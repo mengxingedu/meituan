@@ -1,10 +1,10 @@
 <template>
     <div class="header_conten">
-        <div class="navbar">
+        <router-link to='/city' tag='div' class="navbar">
             <p class="nav-city">
                 深圳 <span class="iconfont">&#xe673;</span>
             </p>
-        </div>
+        </router-link>
         <div class="nav-input">
             <span class="iconfont search-icon">&#xe608;</span>
             <span class="input-con">请输入商家名、品类或者商圈...</span>
