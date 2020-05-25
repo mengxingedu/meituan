@@ -26,6 +26,70 @@
 			"spell": "guilin",
 			"name": "桂林"
 		}],
+		"hlphabet": [{
+			"spell": "A",
+			"name": "A"
+		}, {
+			"spell": "B",
+			"name": "B"
+		}, {
+			"spell": "C",
+			"name": "C"
+		}, {
+			"spell": "D",
+			"name": "D"
+		}, {
+			"spell": "E",
+			"name": "E"
+		}, {
+			"spell": "F",
+			"name": "F"
+		}, {
+			"spell": "G",
+			"name": "G"
+		}, {
+			"spell": "H",
+			"name": "H"
+		}, {
+			"spell": "J",
+			"name": "J"
+		}, {
+			"spell": "K",
+			"name": "K"
+		}, {
+			"spell": "L",
+			"name": "L"
+		}, {
+			"spell": "M",
+			"name": "M"
+		}, {
+			"spell": "N",
+			"name": "N"
+		}, {
+			"spell": "Q",
+			"name": "Q"
+		}, {
+			"spell": "R",
+			"name": "R"
+		}, {
+			"spell": "S",
+			"name": "S"
+		}, {
+			"spell": "T",
+			"name": "T"
+		}, {
+			"spell": "W",
+			"name": "W"
+		}, {
+			"spell": "X",
+			"name": "X"
+		}, {
+			"spell": "Y",
+			"name": "Y"
+		}, {
+			"spell": "Z",
+			"name": "Z"
+		}],
 		"cities": {
 			"A": [{
 				"id": 56,

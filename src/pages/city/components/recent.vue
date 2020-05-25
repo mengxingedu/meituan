@@ -1,7 +1,7 @@
 <template>
     <div class="Recent_Con">
-        <CityTitle CityName='最近访问' />
-        <CityList />
+        <CityTitle :CityName='TypeName' />
+        <CityList :cityList='cityList' />
     </div>
 </template>
 
@@ -11,6 +11,10 @@ import CityList from './public/List'
 
 export default {
     name : 'Recent',
+    props : {
+        TypeName : String,
+        cityList : [Array, Object]
+    },
     components : {
         CityTitle,
         CityList

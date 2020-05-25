@@ -1,29 +1,31 @@
 <template>
-    <div>
-        
-        <div class="ListCon">
-            <span class="borders"></span>
-
-            <!-- <h4 class="shou">A</h4> -->
-
-            <P class="city_name">上海</P>
-            <P class="city_name">上海</P>
-            <P class="city_name">上海</P>
-            <P class="city_name">上海</P>
-            <P class="city_name">上海</P>
-            <P class="city_name">上海</P>
-            <P class="city_name">上海</P>
-            <P class="city_name">上海</P>
+    <div class="ListCon">
+        <span class="borders"></span>
+        <div class="clearfix" v-if='cityletter'>
+            <h4 class="shou">{{cityletter}}</h4>
+            <P class="city_name" v-for="(item) in cityList" :key='item.id'> {{item.name}}</P>
+        </div>
+        <div v-else class="clearfix">
+            <P class="city_name" v-for="(item) in cityList" :key='item.id'> {{item.name}}</P>
         </div>
     </div>
-    
 </template>
 
 <script>
 
 
 export default {
-    name : 'cityList'
+    name : 'cityList',
+    props : {
+        cityList : [Array, Object],
+        cityletter : String
+    },
+    computed : {
+        isShowShou (){
+            return Object.prototype.toString.call(this.cityList) ===  "[object Object]"
+        }
+        
+    }
 }
 </script>
 
@@ -64,8 +66,11 @@ export default {
         position absolute
         bottom 0
         content ''
+        left 0
+        right 0
         border-bottom 1px solid #ddd8ce
     .shou
+        display inline-block
         float left
         width 25%
         height calc(1.6rem + 1px)
@@ -82,5 +87,6 @@ export default {
         line-height .8rem
         margin 0
         text-align center
+        float left
         border-bottom 1px solid #ddd8ce
 </style>

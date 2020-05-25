@@ -2,9 +2,8 @@
     <div class="Cities_Con">
         <CityTitle CityName='全部城市' />
         <div class="Cities_box">
-            <CityAlphabet />
-            
-            <CityList />
+            <CityAlphabet :hlphabetList='hlphabetList' />
+            <CityList  :cityList='item' v-for='(item, val) of AllCity' :key='val' :cityletter='val' />
         </div>
     </div>
     
@@ -17,6 +16,10 @@ import CityList from './public/List'
 
 export default {
     name : 'AllCities',
+    props : {
+        hlphabetList : Array,
+        AllCity : [Object, Array]
+    },
     components : {
         CityTitle,
         CityAlphabet,

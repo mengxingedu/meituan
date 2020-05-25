@@ -1,22 +1,15 @@
 <template>
     <ul class="Alphabet clearfix">
-        <li class="item">A</li>
-        <li class="item">A</li>
-        <li class="item">A</li>
-        <li class="item">A</li>
-        <li class="item">A</li>
-        <li class="item">A</li>
-        <li class="item">A</li>
-        <li class="item">A</li>
-        <li class="item">A</li>
-        <li class="item">A</li>
-        <li class="item">A</li>
+        <li class="item" v-for='item of hlphabetList' :key="item.name">{{item.name}}</li>
     </ul>
 </template>
 
 <script>
 export default {
-    name : 'CityAlphabet'
+    name : 'CityAlphabet',
+    props : {
+        hlphabetList : Array
+    }
 }
 </script>
 

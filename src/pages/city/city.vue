@@ -1,11 +1,28 @@
 <template>
     <div class="cityContent clearfix">
+        <!--头部 start-->
         <CityHeader />
-        <CityLocation />
-        <CityRecent />
-        <CityRecent />
-        <CityAllCities />
+        <!--end 头部-->
+
+        <!--当前城市 start-->
+        <CityLocation  />
+        <!--end 当前城市-->
+
+        <!--最近访问 start-->
+        <CityRecent TypeName='最近访问' v-if='Recent.length' />
+        <!--end 最近访问-->
+
+        <!--热门城市 start-->
+        <CityRecent TypeName='热门城市' :cityList='cityList' />
+        <!--end 热门城市-->
+
+        <!--全部城市 start-->
+        <CityAllCities  :hlphabetList='hlphabet' :AllCity='AllCity' />
+        <!--end 全部城市-->
+
+        <!---->
         <pageFooter />
+        <!---->
     </div>
 </template>
 
@@ -15,6 +32,7 @@ import CityLocation from './components/location'
 import CityRecent from './components/recent'
 import CityAllCities from './components/AllCities'
 import pageFooter from '@/common/footer/footer'
+import axios from 'axios'
 
 export default {
     name : 'city',
@@ -24,6 +42,34 @@ export default {
         CityRecent,
         CityAllCities,
         pageFooter
+    },
+    data () {
+        return {
+            Recent : [],
+            cityList : [],
+            hlphabet : [],
+            AllCity : []
+        }
+    },
+    methods : {
+        getCityInfo(){
+            axios.get('/mock/city.json').then((response) => {
+                console.log(response)
+                if(response.status == 200){
+                    if(response.data && response.data.data){
+                        const data = response.data.data;
+                        this.cityList = data.hotCities;
+                        this.hlphabet = data.hlphabet;
+                        this.AllCity = data.cities;
+                    }
+                }
+            }).catch((error) => {
+                console.log(error)
+            })
+        }
+    },
+    mounted(){
+        this.getCityInfo();
     }
 }
 </script>
