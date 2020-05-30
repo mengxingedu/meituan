@@ -1,7 +1,7 @@
 <template>
     <div class="Recent_Con">
         <CityTitle :CityName='TypeName' />
-        <CityList :cityList='cityList' />
+        <CityList :cityList='hotCity' :isAddHistory='isAddHistory' :hehe='this.isAddHistory' />
     </div>
 </template>
 
@@ -13,7 +13,11 @@ export default {
     name : 'Recent',
     props : {
         TypeName : String,
-        cityList : [Array, Object]
+        hotCity : [Array, Object],
+        isAddHistory : {
+            type : Boolean,
+            default : true
+        }
     },
     components : {
         CityTitle,

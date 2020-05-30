@@ -37,7 +37,7 @@ export default {
         height .22rem
         line-height .22rem
         font-size .2rem
-        padding 0 .46rem
+        padding 0 .35rem
         border-right 1px solid #333
         color #FE8C00
     .nav_list li:last-child

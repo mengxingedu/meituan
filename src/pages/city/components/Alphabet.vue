@@ -1,14 +1,30 @@
 <template>
     <ul class="Alphabet clearfix">
-        <li class="item" v-for='item of hlphabetList' :key="item.name">{{item.name}}</li>
+        <li class="item" 
+            v-for='item of hlphabetList' 
+            :key="item.name"
+            @click='handleClick(item.name)'
+        >
+        {{item.name}}
+        </li>
     </ul>
 </template>
 
 <script>
+// import { mapMutations } from 'vuex'
+
 export default {
     name : 'CityAlphabet',
     props : {
         hlphabetList : Array
+    },
+    methods : {
+        handleClick (val) {
+            this.$emit('aipha', val)
+            // this.setLetter(val);
+            // this.setLetter(this.$refs[val][0]);
+        },
+        // ...mapMutations(['setLetter'])
     }
 }
 </script>

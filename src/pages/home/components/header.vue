@@ -2,7 +2,7 @@
     <div class="header_conten">
         <router-link to='/city' tag='div' class="navbar">
             <p class="nav-city">
-                深圳 <span class="iconfont">&#xe673;</span>
+                {{ cities }} <span class="iconfont">&#xe673;</span>
             </p>
         </router-link>
         <div class="nav-input">
@@ -16,8 +16,13 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default{
-    name : 'HomeHeader'
+    name : 'HomeHeader',
+    computed : {
+        ...mapState(['cities'])
+    }
 }
 </script>
 

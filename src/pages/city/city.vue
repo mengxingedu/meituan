@@ -4,49 +4,32 @@
         <CityHeader />
         <!--end 头部-->
 
-        <!--当前城市 start-->
-        <CityLocation  />
-        <!--end 当前城市-->
+        <CityList  :hotCity='hotCity' :hlphabet='hlphabet' :AllCity='AllCity' />
 
-        <!--最近访问 start-->
-        <CityRecent TypeName='最近访问' v-if='Recent.length' />
-        <!--end 最近访问-->
-
-        <!--热门城市 start-->
-        <CityRecent TypeName='热门城市' :cityList='cityList' />
-        <!--end 热门城市-->
-
-        <!--全部城市 start-->
-        <CityAllCities  :hlphabetList='hlphabet' :AllCity='AllCity' />
-        <!--end 全部城市-->
-
-        <!---->
-        <pageFooter />
-        <!---->
+        
     </div>
 </template>
 
 <script>
 import CityHeader from './components/header'
-import CityLocation from './components/location'
-import CityRecent from './components/recent'
-import CityAllCities from './components/AllCities'
-import pageFooter from '@/common/footer/footer'
+import CityList from './components/cityList';
+
 import axios from 'axios'
 
 export default {
     name : 'city',
     components : {
         CityHeader,
-        CityLocation,
-        CityRecent,
-        CityAllCities,
-        pageFooter
+        CityList,
+        
+    },
+    provide : {
+        
     },
     data () {
         return {
             Recent : [],
-            cityList : [],
+            hotCity : [],
             hlphabet : [],
             AllCity : []
         }
@@ -58,7 +41,7 @@ export default {
                 if(response.status == 200){
                     if(response.data && response.data.data){
                         const data = response.data.data;
-                        this.cityList = data.hotCities;
+                        this.hotCity = data.hotCities;
                         this.hlphabet = data.hlphabet;
                         this.AllCity = data.cities;
                     }
@@ -74,5 +57,5 @@ export default {
 }
 </script>
 
-<style lang='cityContent' scoped>
+<style lang='stylus' scoped>
 </style>

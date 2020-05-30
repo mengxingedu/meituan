@@ -2,29 +2,66 @@
     <div class="ListCon">
         <span class="borders"></span>
         <div class="clearfix" v-if='cityletter'>
-            <h4 class="shou">{{cityletter}}</h4>
+            <h4 class="shou" :ref='cityletter' :hehe='cityletter'>{{cityletter}}</h4>
             <P class="city_name" v-for="(item) in cityList" :key='item.id'> {{item.name}}</P>
         </div>
         <div v-else class="clearfix">
-            <P class="city_name" v-for="(item) in cityList" :key='item.id'> {{item.name}}</P>
+            <P class="city_name" v-for="(item) in cityList" :key='item.id'  @click="thisHandleClick(item, isAddHistory)"> {{item.name}}</P>
         </div>
     </div>
 </template>
 
 <script>
-
+// import router from '@/router'
+import { mapState, mapMutations } from 'vuex'
 
 export default {
     name : 'cityList',
     props : {
         cityList : [Array, Object],
-        cityletter : String
+        cityletter : String,
+        isAddHistory : {
+            type : Boolean,
+            default : true
+        }
     },
     computed : {
+        ...mapState(['recentVisit']),
         isShowShou (){
             return Object.prototype.toString.call(this.cityList) ===  "[object Object]"
         }
-        
+    },
+    methods :{
+        ...mapMutations(['setRecentVisit', 'setCities']),
+        thisHandleClick(val, isAdd){
+
+            if(!isAdd) {
+                this.setCities(val.name)
+                this.$router.push({path : '/'})
+                return false
+            }
+
+            if(this.recentVisit.length == 0){
+                this.setRecentVisit(val)
+                this.setCities(val.name)
+                this.$router.push({path : '/'})
+
+            }else{
+                for(let i in this.recentVisit){
+                    if(this.recentVisit[i].name === val.name){
+                        console.log(this.recentVisit[i].name )
+                        this.$router.push({path : '/'})
+                        break;
+                    }else if(this.recentVisit[i].name !== val.name && i == this.recentVisit.length - 1){
+                        this.setRecentVisit(val)
+                        this.setCities(val.name)
+                        this.$router.push({path : '/'})
+                        
+                    } 
+                }
+            }
+            
+        }
     }
 }
 </script>
@@ -81,6 +118,8 @@ export default {
         text-align center
         font-size .8rem
     .city_name
+        position relative
+        z-index 2
         display inline-block
         width 25%
         height .8rem

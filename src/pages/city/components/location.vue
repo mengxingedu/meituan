@@ -1,16 +1,21 @@
 <template>
     <div class="locationCon">
         <p class="city">定位城市：</p>
-        <p class="city-name">
+        <router-link class="city-name" to='/' tag='p'>
             <span class="iconfont icondingwei icon_local"></span>
-            <span class="cityTil">重庆</span>
-        </p>
+            <span class="cityTil">{{ this.cities }}</span>
+            {{this.letter}}
+        </router-link>
     </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
-    name : 'location'
+    name : 'location',
+    computed : {
+        ...mapState(['cities','letter'])
+    }
 }
 </script>
 
