@@ -7,20 +7,10 @@
 
             <!--最近访问 start-->
             <CityRecent TypeName='最近访问' v-if='this.recentVisit.length' :isAddHistory='isAddHistory' :hotCity='this.recentVisit' />
-            <!-- <div class="Recent_Con" v-if='this.recentVisit.length'>
-                <CityTitle CityName='最近访问' />
-                <div class="ListCon" >
-                    <span class="borders"></span>
-                    <div class="clearfix">
-                        <P class="city_name" v-for="(item) in this.recentVisit" :key='item.id' > {{item.name}}</P>
-                    </div>
-                </div>
-            </div> -->
             <!--end 最近访问-->
 
             <!--热门城市 start-->
             <CityRecent TypeName='热门城市' :hotCity='hotCity' />
-            
             <!--end 热门城市-->
 
             <!--全部城市 start-->

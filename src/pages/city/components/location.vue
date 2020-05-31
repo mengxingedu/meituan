@@ -4,17 +4,17 @@
         <router-link class="city-name" to='/' tag='p'>
             <span class="iconfont icondingwei icon_local"></span>
             <span class="cityTil">{{ this.cities }}</span>
-            {{this.letter}}
         </router-link>
     </div>
 </template>
 
 <script>
 import { mapState } from 'vuex'
+
 export default {
     name : 'location',
     computed : {
-        ...mapState(['cities','letter'])
+        ...mapState(['cities'])
     }
 }
 </script>
