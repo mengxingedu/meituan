@@ -4,18 +4,14 @@
         <CityHeader />
         <!--end 头部-->
 
-        <CityList  :hotCity='hotCity' :hlphabet='hlphabet' :AllCity='AllCity' />
-
-        <!--获取当前地址 start-->
-        <baidu-map class="map" @ready="handler"></baidu-map>
-        <!--end 获取当前地址-->
+        <CityList :hotCity='hotCity' :hlphabet='hlphabet' :AllCity='AllCity' />
 
         <!--地址弹框 start-->
-        <position 
-        v-show='isShow' :addressData='this.addressData'
-        @handleclick_ok='setOkClick'
-        @cancel='canclePosition'
-         />
+        <keep-alive exclude='position'>
+             <position 
+        v-show='isShow' :addressData='this.addressData' />
+        </keep-alive>
+       
         <!--end 地址弹框-->
     </div>
 </template>
@@ -72,38 +68,6 @@ export default {
             }).catch((error) => {
                 console.log(error)
             })
-        },
-
-        //获取当前地址
-        handler({ BMap }) {
-            let _this = this;
-            var geolocation = new BMap.Geolocation();
-            geolocation.getCurrentPosition(
-                function(r) {
-                    if (this.getStatus() == 0) {
-                        console.log(_this.cities == r.address.city)
-                        if(_this.cities !=  r.address.city){
-                            _this.isShow = true;
-                            _this.addressData = r.address.city;
-                            
-                        }
-                    } else {
-                        console.log("failed" + this.getStatus());
-                    }
-                },
-                { enableHighAccuracy: true }
-            );
-        },
-
-        //获取地址弹框 点击确认修改地址
-        setOkClick(){
-            
-            this.setCities(this.addressData)
-            this.isShow = false
-        },
-        //获取地址弹框点击取消使用当前获取的地址
-        canclePosition(){
-            this.isShow = false
         }
     },
     mounted(){
